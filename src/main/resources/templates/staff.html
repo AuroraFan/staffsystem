@@ -1,0 +1,106 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Grid Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="/css/bootstrap-grid.css" type="text/css" rel="stylesheet">
+
+    <link href="/css/bootstrap.css-reboot" type="text/css" rel="stylesheet">
+
+<script src="/js/bootstrap.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="jumbotron">
+                <p class="lead">添加或输入名字查找员工</p>
+                <hr class="my-4">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <form action="/getStaffByName" method="get" class="form-inline my-2 my-lg-0">
+                            <input name="name" class="form-control mr-sm-2" type="text" placeholder="名字" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                        </form>
+                    </div>
+                    <div class="col-md-auto">
+                        <form action="/getStaffById" method="get" class="form-inline my-2 my-lg-0">
+                            <input name="staffId" class="form-control mr-sm-2" type="text" placeholder="工号" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                        </form>
+                    </div>
+                    <div class="col-md-auto">
+                       <form action="/addStaff" method="post" class="form-inline my-2 my-lg-0">
+                          <div class="modal-body">
+                                                        <input name="staffId" class="form-control mr-sm-2" type="text" placeholder="staffId" aria-label="Search">
+                                                        <input name="name" class="form-control mr-sm-2" type="text" placeholder="name" aria-label="Search">
+                                                        <input name="headUrl" class="form-control mr-sm-2" type="text" placeholder="headUrl" aria-label="Search">
+                                                        <input name="gender" class="form-control mr-sm-2" type="text" placeholder="gender" aria-label="Search">
+                                                        <br>
+                                                        <input name="birthYear" class="form-control mr-sm-2" type="text" placeholder="birthYear" aria-label="Search">
+                                                        <input name="address" class="form-control mr-sm-2" type="text" placeholder="address" aria-label="Search">
+                                                        <input name="phoneNumber" class="form-control mr-sm-2" type="text" placeholder="phoneNumber" aria-label="Search">
+                                                        <input name="departmentName" class="form-control mr-sm-2" type="text" placeholder="departmentName" aria-label="Search">
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">添加</button>
+                          </div>  
+                        </form>           
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        工号
+                    </th>
+                    <th>
+                        名字
+                    </th>
+                    <th>
+                        部门
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    #foreach($staff in $staffs)
+                    <tr>
+                        <td>
+                            $!{staff.staffId}
+                        </td>
+                        <td>
+                            $!{staff.name}
+                        </td>
+                        <td>
+                            $!{staff.departmentName}
+                        </td>
+                        <td>
+                            <form action="/getStaff" method="get" class="form-inline my-2 my-lg-0">
+                                <input name="staffId" value="$!{staff.staffId}" class="form-control mr-sm-2" type="hidden" >
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">详情</button>
+                            </form>
+                        </td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Grid Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="/css/bootstrap-grid.css" type="text/css" rel="stylesheet">
+
+    <link href="/css/bootstrap.css-reboot" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="jumbotron">
+                <p class="lead">添加或输入名字查找部门</p>
+                <hr class="my-4">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <form action="/getDepartment" method="get" class="form-inline my-2 my-lg-0">
+                            <input name="name" class="form-control mr-sm-2" type="text" placeholder="关键字" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                        </form>
+                    </div>
+                    <div class="col-md-auto">
+                        <form action="/addDepartment" method="post" class="form-inline my-2 my-lg-0">
+                            <input name="departmentId" class="form-control mr-sm-2" type="text" placeholder="部门编号" aria-label="Search">
+                            <input name="name" class="form-control mr-sm-2" type="text" placeholder="部门名称" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">添加</button>
+                        </form>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        部门编号
+                    </th>
+                    <th>
+                        部门名称
+                    </th>
+                    <th>
+                        部门人数
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    #foreach($department in $departments)
+                    <tr>
+                        <td>
+                            $!{department.departmentId}
+                        </td>
+                        <td>
+                            $!{department.name}
+                        </td>
+                        <td>
+                            $!{department.stuffCount}
+                        </td>
+                        <td>
+                            <form action="/deleteDepartment" method="post" class="form-inline my-2 my-lg-0">
+                                <input name="departmentId" value="${department.departmentId}" class="form-control mr-sm-2" type="hidden" >
+                                <input name="stuffCount" value="$!{department.stuffCount}" class="form-control mr-sm-2" type="hidden" >
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">删除</button>
+                            </form>
+                        </td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/bootstrap.bundle.js"></script>
+</body>
+</html>
